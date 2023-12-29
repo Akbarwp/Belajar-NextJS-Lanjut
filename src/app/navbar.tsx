@@ -17,8 +17,8 @@ export default function Navbar() {
                             <li>
                                 <Link href="/shop" className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition">Shop</Link>
                                 <ul className="p-2">
-                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/guitar">Guitar</Link></li>
-                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/guitar/bass">Bass</Link></li>
+                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar">Guitar</Link></li>
+                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar/Bass">Bass</Link></li>
                                 </ul>
                             </li>
                             <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/product">Product</Link></li>
@@ -36,8 +36,8 @@ export default function Navbar() {
                             <div className="dropdown dropdown-bottom dropdown-hover">
                                 <div tabIndex={0} role="button" className="text-bone-pink"><Link href="/shop">Shop</Link></div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-bone-pink rounded-box w-52">
-                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg transition"><Link href="/shop/guitar">Guitar</Link></li>
-                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg transition"><Link href="/shop/guitar/bass">Bass</Link></li>
+                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar">Guitar</Link></li>
+                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar/Bass">Bass</Link></li>
                                 </ul>
                             </div>
                         </li>
@@ -46,12 +46,12 @@ export default function Navbar() {
                 </div>
                 <div className="navbar-end gap-x-2">
                     {/* Sign Up biasa */}
-                    <Link href="/auth/register" className="btn uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
+                    <Link href="/register" className="btn uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
                         Register
                     </Link>
 
                     {/* Login biasa */}
-                    <Link href="/auth/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
+                    <Link href="/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login
                     </Link>
                 </div>

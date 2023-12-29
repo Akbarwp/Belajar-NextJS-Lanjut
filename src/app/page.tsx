@@ -1,13 +1,11 @@
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-    title: 'Homepage',
-    description: 'Halaman Utama',
-}
+import Head from 'next/head';
 
 export default function Home() {
     return (
         <>
+            <Head>
+                <title>Homepage</title>
+            </Head>
             <main className="flex h-screen items-center justify-center hero">
                 <div className="hero-content text-center">
                     <div className="max-w-md">
