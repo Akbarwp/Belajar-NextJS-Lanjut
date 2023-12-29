@@ -1,7 +1,16 @@
+"use client"
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function Navbar() {
+
+    // Cara penggunaan Hook bila berada URL tertentu
+    const pathname = usePathname();
+
+    // Cara penggunaan Hook untuk menuju URL tertentu
+    const router = useRouter();
 
     return (
         <>
@@ -31,17 +40,17 @@ export default function Navbar() {
                 {/* Website */}
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">
-                        <li className="text-bone-pink"><Link href="/about">About</Link></li>
+                        <li className={`${pathname === "/about" ? "text-orange" : "text-bone-pink"}`}><Link href="/about">About</Link></li>
                         <li>
                             <div className="dropdown dropdown-bottom dropdown-hover">
-                                <div tabIndex={0} role="button" className="text-bone-pink"><Link href="/shop">Shop</Link></div>
+                                <div tabIndex={0} role="button" className={`${pathname === "/shop" ? "text-orange" : "text-bone-pink"}`}><Link href="/shop">Shop</Link></div>
                                 <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-bone-pink rounded-box w-52">
-                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar">Guitar</Link></li>
-                                    <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar/Bass">Bass</Link></li>
+                                    <li className={`${pathname === "/shop/Guitar" ? "text-orange" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/shop/Guitar">Guitar</Link></li>
+                                    <li className={`${pathname === "/shop/Guitar/Bass" ? "text-orange" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/shop/Guitar/Bass">Bass</Link></li>
                                 </ul>
                             </div>
                         </li>
-                        <li className="text-bone-pink"><Link href="/product">Product</Link></li>
+                        <li className={`${pathname === "/product" ? "text-orange" : "text-bone-pink"}`}><Link href="/product">Product</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end gap-x-2">
@@ -54,6 +63,11 @@ export default function Navbar() {
                     <Link href="/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login
                     </Link>
+
+                    {/* Login hook */}
+                    <button onClick={() => router.push("/login")} className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
+                        Login H
+                    </button>
                 </div>
             </div >
         </>

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Link from "next/link";
 
 // Cara penggunaan Dynamic Routing --> mengakses parameter pada URL
@@ -8,9 +7,6 @@ export default function DetailProduct(props: DetailProductProps) {
     const { params } = props;
     return (
         <>
-        <Head>
-                <title>Detail Product</title>
-            </Head>
             <main className="flex h-screen items-center justify-center hero">
                 <div className="hero-content text-center">
                     <div className="max-w-md">

@@ -1,11 +1,6 @@
-import Head from 'next/head';
-
 export default function About() {
     return (
         <>
-            <Head>
-                <title>About</title>
-            </Head>
             <main className="flex h-screen items-center justify-center hero">
                 <div className="hero-content text-center">
                     <div className="max-w-md">

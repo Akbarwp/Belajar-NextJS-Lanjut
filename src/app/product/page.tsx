@@ -1,12 +1,8 @@
-import Head from "next/head";
 import Link from "next/link";
 
 export default function Product() {
     return (
         <>
-        <Head>
-                <title>Product</title>
-            </Head>
             <main className="flex h-screen items-center justify-center hero">
                 <div className="hero-content text-center">
                     <div className="max-w-md">
