@@ -1,8 +1,23 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 
 // Contoh penggunaan Group Routing membuat route Login tanpa harus ada URL '/auth'
 export default function Login() {
+
+    const handleLogin = (e: any) => {
+        e.preventDefault();
+
+        fetch('/api/auth/login', {
+            method: "POST",
+            body: JSON.stringify({
+                email: e.currentTarget.email.value,
+                password: e.currentTarget.password.value,
+            }),
+        });
+    }
+
     return (
         <>
             <div className="w-full h-screen flex justify-center items-center">
@@ -15,25 +30,25 @@ export default function Login() {
                                 </h4>
                             </div>
 
-                            <form>
+                            <form onSubmit={(e) => handleLogin(e)}>
                                 <h1 className="mb-3 font-semibold text-orange">Login</h1>
 
                                 <label className="form-control w-full">
                                     <div className="label">
                                         <span className="label-text text-orange">Email</span>
                                     </div>
-                                    <input type="email" placeholder="Ucup@example.com" className="input input-bordered w-full text-bone-pink bg-dark-blue" />
+                                    <input type="email" name="email" placeholder="Ucup@example.com" className="input input-bordered w-full text-bone-pink bg-dark-blue" required />
                                 </label>
 
                                 <label className="form-control w-full">
                                     <div className="label">
                                         <span className="label-text text-orange">Password</span>
                                     </div>
-                                    <input type="password" placeholder="••••••••" className="input input-bordered w-full text-bone-pink bg-dark-blue" />
+                                    <input type="password" name="password" placeholder="••••••••" className="input input-bordered w-full text-bone-pink bg-dark-blue" required />
                                 </label>
 
                                 <div className="my-5 text-center">
-                                    <button className="btn w-full uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">Login</button>
+                                    <button type="submit" className="btn w-full uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">Login</button>
                                 </div>
 
                                 <div className="flex items-center">

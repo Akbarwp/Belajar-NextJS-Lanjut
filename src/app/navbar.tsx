@@ -65,9 +65,9 @@ export default function Navbar() {
                     </Link>
 
                     {/* Login hook */}
-                    <button onClick={() => router.push("/login")} className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
+                    {/* <button onClick={() => router.push("/login")} className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login H
-                    </button>
+                    </button> */}
                 </div>
             </div >
         </>
