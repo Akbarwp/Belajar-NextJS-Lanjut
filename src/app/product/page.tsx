@@ -1,6 +1,34 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 
 export default function Product() {
+
+    // revalidate --> On-Demand revalidation
+    const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
+    const revalidate = async () => {
+        const res = await fetch(`http://localhost:3000/api/revalidate?tag=products&secret=12345678`, {
+            method: "POST",
+        });
+
+        setTimeout(() => {
+            setIsLoading(true);
+        }, 1000);
+
+        if (!res.ok) {
+            setMessage("Revalidate Failed!");
+
+        } else {
+            const status = await res.json();
+            if (status.revalidate) {
+                setMessage("Revalidate Success!");
+            }
+        }
+        setIsLoading(false);
+    }
+
     return (
         <>
             <main className="flex h-screen items-center justify-center hero">
@@ -13,6 +41,11 @@ export default function Product() {
                             <Link href="/product/Bass" className="btn btn-primary">Bass</Link>
                             <Link href="/product/Piano" className="btn btn-primary">Piano</Link>
                         </div>
+                        <button className="mt-3 px-3 py-2 bg-blue text-bone-pink border border-blue hover:bg-dark-blue hover:border-bone-pink rounded-lg transition" onClick={() => revalidate()}>
+                            {
+                                !isLoading && message === "" ? "Revalidate Fake Store" : isLoading ? message : <span className="loading loading-spinner loading-md text-bone-pink"></span>
+                            }
+                        </button>
                     </div>
                 </div>
             </main>

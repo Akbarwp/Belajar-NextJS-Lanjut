@@ -22,15 +22,16 @@ export default function Navbar() {
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
                         </div>
                         <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-bone-pink rounded-box w-52">
-                            <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/about">About</Link></li>
+                            <li className={`${pathname === "/about" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/about">About</Link></li>
                             <li>
                                 <Link href="/shop" className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition">Shop</Link>
                                 <ul className="p-2">
-                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar">Guitar</Link></li>
-                                    <li className="text-orange hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/shop/Guitar/Bass">Bass</Link></li>
+                                    <li className={`${pathname === "/product" ? "text-purple" : "text-orange"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/shop/Guitar">Guitar</Link></li>
+                                    <li className={`${pathname === "/product" ? "text-purple" : "text-orange"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/shop/Guitar/Bass">Bass</Link></li>
                                 </ul>
                             </li>
-                            <li className="text-blue hover:bg-white/60 hover:rounded-lg hover:transition"><Link href="/product">Product</Link></li>
+                            <li className={`${pathname === "/product" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/product">Product</Link></li>
+                            <li className={`${pathname === "/fakeStore" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/fakeStore">Fake Store</Link></li>
                         </ul>
                     </div>
 
@@ -51,6 +52,7 @@ export default function Navbar() {
                             </div>
                         </li>
                         <li className={`${pathname === "/product" ? "text-orange" : "text-bone-pink"}`}><Link href="/product">Product</Link></li>
+                        <li className={`${pathname === "/fakeStore" ? "text-orange" : "text-bone-pink"}`}><Link href="/fakeStore">Fake Store</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end gap-x-2">
