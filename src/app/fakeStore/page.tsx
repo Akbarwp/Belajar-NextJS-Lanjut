@@ -5,7 +5,10 @@ import Link from "next/link";
 
 // Cara melakukan Data Fetching ==> fake store
 async function getData() {
-    const res = await fetch('https://fakestoreapi.com/products');
+    const res = await fetch('https://fakestoreapi.com/products', {
+        // Cara penggunaan loading page
+        cache: "no-store",
+    });
     if (!res.ok) {
         throw new Error("Failed fetch data!");
     }
@@ -14,7 +17,7 @@ async function getData() {
 
 // Cara melakukan Data Fetching ==> api route
 async function getDataNext() {
-    const res = await fetch("http://localhost:3000/api/product", {
+    const res = await fetch("http://localhost:3000/api/producta", {
         // Cara penggunaan Cache untuk load data tanpa perlu fetch lagi
         cache: "force-cache",
 
@@ -34,6 +37,7 @@ async function getDataNext() {
     return res.json();
 }
 
+// eslint-disable-next-line @next/next/no-async-client-component
 export default async function FakeStore() {
 
     // const products = await getData();
@@ -60,7 +64,7 @@ export default async function FakeStore() {
             </main> */}
 
             <main className="w-full h-full px-7 py-3">
-                <h1 className="text-5xl font-bold text-bone-pink text-center my-10">Fake Store Page --> <span className="text-orange">API Route</span></h1>
+                <h1 className="text-5xl font-bold text-bone-pink text-center my-10">Fake Store Page {'-->'} <span className="text-orange">API Route</span></h1>
                 <div className="flex flex-wrap justify-center items-center gap-7 mb-10">
                     {productsNext.data.length > 0 && productsNext.data.map((product: any) => (
                         <div key={product.id} className="card card-compact w-96 bg-blue shadow-xl">
