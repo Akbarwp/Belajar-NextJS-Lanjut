@@ -40,13 +40,13 @@ async function getDataNext() {
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function FakeStore() {
 
-    // const products = await getData();
-    const productsNext = await getDataNext();
+    const products = await getData();
+    // const productsNext = await getDataNext();
 
     return (
         <>
-            {/* <main className="w-full h-full px-7 py-3">
-                <h1 className="text-5xl font-bold text-bone-pink text-center my-10">Fake Store Page --> <span className="text-orange">Fake Store API</span></h1>
+            <main className="w-full h-full px-7 py-3">
+                <h1 className="text-5xl font-bold text-bone-pink text-center my-10">Fake Store Page {'-->'} <span className="text-orange">Fake Store API</span></h1>
                 <div className="flex flex-wrap justify-center items-center gap-7 mb-10">
                     {products.length > 0 && products.map((product: any) => (
                         <>
@@ -61,9 +61,9 @@ export default async function FakeStore() {
                         </>
                     ))}
                 </div>
-            </main> */}
+            </main>
 
-            <main className="w-full h-full px-7 py-3">
+            {/* <main className="w-full h-full px-7 py-3">
                 <h1 className="text-5xl font-bold text-bone-pink text-center my-10">Fake Store Page {'-->'} <span className="text-orange">API Route</span></h1>
                 <div className="flex flex-wrap justify-center items-center gap-7 mb-10">
                     {productsNext.data.length > 0 && productsNext.data.map((product: any) => (
@@ -77,7 +77,7 @@ export default async function FakeStore() {
                         </div>
                     ))}
                 </div>
-            </main>
+            </main> */}
         </>
     )
 }
