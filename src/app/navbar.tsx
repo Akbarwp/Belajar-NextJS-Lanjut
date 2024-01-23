@@ -32,6 +32,7 @@ export default function Navbar() {
                             </li>
                             <li className={`${pathname === "/product" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/product">Product</Link></li>
                             <li className={`${pathname === "/fakeStore" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/fakeStore">Fake Store</Link></li>
+                            <li className={`${pathname === "/dashboard" ? "text-purple" : "text-blue"} hover:bg-white/60 hover:rounded-lg hover:transition`}><Link href="/dashboard">Dashboard</Link></li>
                         </ul>
                     </div>
 
@@ -53,6 +54,7 @@ export default function Navbar() {
                         </li>
                         <li className={`${pathname === "/product" ? "text-orange" : "text-bone-pink"}`}><Link href="/product">Product</Link></li>
                         <li className={`${pathname === "/fakeStore" ? "text-orange" : "text-bone-pink"}`}><Link href="/fakeStore">Fake Store</Link></li>
+                        <li className={`${pathname === "/dashboard" ? "text-orange" : "text-bone-pink"}`}><Link href="/dashboard">Dashboard</Link></li>
                     </ul>
                 </div>
                 <div className="navbar-end gap-x-2">
