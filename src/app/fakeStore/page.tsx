@@ -17,7 +17,7 @@ async function getData() {
 
 // Cara melakukan Data Fetching ==> api route
 async function getDataNext() {
-    const res = await fetch("http://localhost:3000/api/producta", {
+    const res = await fetch("http://localhost:3000/api/product", {
         // Cara penggunaan Cache untuk load data tanpa perlu fetch lagi
         cache: "force-cache",
 
