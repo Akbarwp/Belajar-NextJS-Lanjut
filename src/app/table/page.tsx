@@ -4,6 +4,7 @@ import Link from "next/link";
 // eslint-disable-next-line @next/next/no-async-client-component
 export default async function Table() {
     const productsNext = await getDataNext("http://localhost:3000/api/product");
+    let i: number = 1;
 
     return (
         <>
@@ -23,7 +24,7 @@ export default async function Table() {
                         <tbody className="text-bone-pink text-lg">
                             {productsNext.data.length > 0 && productsNext.data.map((product: any) => (
                                 <tr key={product.id} className="hover:bg-bone-pink hover:text-dark-purple transition">
-                                    <td>{product.id}</td>
+                                    <td>{i++}</td>
                                     <td>{product.name}</td>
                                     <td>{product.category}</td>
                                     <td>{product.price.toLocaleString('id-ID', { style: "currency", currency: "IDR" })}</td>
