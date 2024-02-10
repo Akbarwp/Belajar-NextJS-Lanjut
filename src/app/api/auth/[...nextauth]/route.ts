@@ -23,7 +23,7 @@ const authOptions: NextAuthOptions = {
 
                 const user: any = {
                     id: 1,
-                    name: "Ucup",
+                    username: "Ucup",
                     email: "ucup@gmail.com",
                     role: "admin",
                 };
@@ -39,7 +39,7 @@ const authOptions: NextAuthOptions = {
         async jwt({ token, account, profile, user }: any) {
             if (account?.providers === "credentials") {
                 token.email = user.email;
-                token.name = user.name;
+                token.username = user.username;
                 token.role = user.role;
             }
             return token;
@@ -49,8 +49,8 @@ const authOptions: NextAuthOptions = {
             if ("email" in token) {
                 session.user.email = token.email;
             }
-            if ("name" in token) {
-                session.user.name = token.name;
+            if ("username" in token) {
+                session.user.username = token.username;
             }
             if ("role" in token) {
                 session.user.role = token.role;

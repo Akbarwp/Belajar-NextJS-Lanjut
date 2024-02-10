@@ -43,7 +43,7 @@ export default function Login() {
                                 </h4>
                             </div>
 
-                            <form onSubmit={(e) => handleLogin(e)}>
+                            <form onSubmit={(e) => handleLogin(e)} encType="multipart/form-data">
                                 <h1 className="mb-3 font-semibold text-orange">Login</h1>
 
                                 <label className="form-control w-full">
