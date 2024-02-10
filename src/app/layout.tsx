@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { Inter } from 'next/font/google';
 import './globals.css';
 import Navbar from './navbar';
+import { SessionProvider } from "next-auth/react";
 
 const inter = Inter({
   subsets: ['latin']
@@ -26,8 +27,10 @@ export default function RootLayout({
         <title>NextJS App</title>
       </head>
       <body className={`${inter.className} bg-dark-blue`}>
-        {!disableNavbar.includes(pathname) && <Navbar /> }
-        {children}
+        <SessionProvider>
+          {!disableNavbar.includes(pathname) && <Navbar /> }
+          {children}
+        </SessionProvider>
       </body>
     </html>
   )

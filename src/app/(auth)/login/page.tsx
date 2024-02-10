@@ -1,22 +1,35 @@
 "use client";
 
+import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // Contoh penggunaan Group Routing membuat route Login tanpa harus ada URL '/auth'
 export default function Login() {
 
-    const handleLogin = (e: any) => {
-        e.preventDefault();
+    const { push } = useRouter();
 
-        fetch('/api/auth/login', {
-            method: "POST",
-            body: JSON.stringify({
-                email: e.currentTarget.email.value,
-                password: e.currentTarget.password.value,
-            }),
-        });
-    }
+    const handleLogin = async (e: any) => {
+        e.preventDefault();
+        try {
+            const res = await signIn("credentials", {
+                redirect: false,
+                email: e.target.email.value,
+                password: e.target.password.value,
+                callbackUrl: "/dashboard",
+            });
+
+            if (!res?.error) {
+                push("/product");
+            } else {
+                console.log(res.error);
+            }
+
+        } catch (err) {
+            console.log(err);
+        }
+    };
 
     return (
         <>

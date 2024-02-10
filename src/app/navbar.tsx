@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { signIn, signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
 
@@ -11,6 +12,9 @@ export default function Navbar() {
 
     // Cara penggunaan Hook untuk menuju URL tertentu
     const router = useRouter();
+
+    // Cara membuat Logout Next
+    const { status }: { status: string; } = useSession();
 
     return (
         <>
@@ -59,6 +63,7 @@ export default function Navbar() {
                         <li className={`${pathname === "/table" ? "text-orange" : "text-bone-pink"}`}><Link href="/table">Table</Link></li>
                     </ul>
                 </div>
+
                 <div className="navbar-end gap-x-2">
                     {/* Sign Up biasa */}
                     <Link href="/register" className="btn uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
@@ -66,14 +71,25 @@ export default function Navbar() {
                     </Link>
 
                     {/* Login biasa */}
-                    <Link href="/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
+                    {/* <Link href="/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login
-                    </Link>
+                    </Link> */}
 
                     {/* Login hook */}
                     {/* <button onClick={() => router.push("/login")} className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login H
                     </button> */}
+
+                    {/* Login Next-Auth */}
+                    {status === "authenticated" ? (
+                        <button className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange" onClick={() => signOut()}>
+                            Logout
+                        </button>
+                    ) : (
+                        <button className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange" onClick={() => signIn()}>
+                            Login
+                        </button>
+                    )}
                 </div>
             </div >
         </>

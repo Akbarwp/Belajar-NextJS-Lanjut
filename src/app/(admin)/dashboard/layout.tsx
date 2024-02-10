@@ -1,7 +1,31 @@
-export default function Layaout({children, analytics}: {children: React.ReactNode; analytics: React.ReactNode}) {
+'use client';
+
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
+export default function Layaout({ children, analytics }: { children: React.ReactNode; analytics: React.ReactNode }) {
+
+    // Penggunaan Session pada Next-Auth
+    const { data: session, status }: {data: any; status: string;} = useSession();
+    const router = useRouter();
+
+    useEffect(() => {
+        if (status === "unauthenticated") {
+            router.push('/login');
+
+        } else {
+            if (session !== undefined && session?.user.role !== 'admin') {
+                router.push('/login');
+            }
+        }
+
+    }, [router, status, session?.user.role, session]);
+
+
     return (
         <>
-        {/* Cara penggunaan Parallel Routes */}
+            {/* Cara penggunaan Parallel Routes */}
             <div className="p-5 w-full flex">
                 <div className="w-1/2">{children}</div>
                 <div className="w-1/2">{analytics}</div>
