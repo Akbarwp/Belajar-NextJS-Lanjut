@@ -43,70 +43,37 @@ export default function Register() {
 
     return (
         <>
-            <div className="w-full h-screen flex justify-center items-center">
-                <div className="w-[1000px] h-[650px] flex justify-center items-center bg-blue shadow-md shadow-orange rounded-lg">
-                    <div className="flex items-center rounded-b-lg lg:w-6/12 lg:rounded-r-lg lg:rounded-bl-none">
-                        <Image width={500} height={500} src="/login-office-dark.jpeg" alt="login image" className="h-[650px] rounded-l-lg" />
+            <div className="m-0 p-0 box-border flex items-center justify-center flex-col h-screen">
+                <div className="bg-white rounded-[30px] shadow-lg relative overflow-hidden w-[768px] max-w-full min-h-[480px]">
+                    <div className="absolute top-0 h-full transition-all ease-in-out right-10 opacity-100 z-50">
+                        <form onSubmit={(e) => handleRegister(e)} encType="multipart/form-data" className="bg-white flex items-center justify-center flex-col py-0 px-10 h-full">
+                            <h1 className="mb-3 text-3xl text-orange font-bold">Create Account</h1>
+                            <span className="text-sm text-dark-blue mb-2">or use your email for registeration</span>
+                            {error !== '' && (
+                                <div role="alert" className="alert alert-error">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span className="text-sm">{error}</span>
+                                </div>
+                            )}
+                            <input name="username" type="text" placeholder="Username" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
+                            <input name="email" type="email" placeholder="Email" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
+                            <input name="password" type="password" placeholder="Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
+                            <input name="repeat_password" type="password" placeholder="Repeat Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
+                            <button type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
+                                {!isLoading ? 'Register' : (
+                                    <span className="loading loading-spinner loading-md"></span>
+                                )}
+                            </button>
+                        </form>
                     </div>
 
-                    <div className="px-4 md:px-0 lg:w-6/12">
-                        <div className="md:mx-6 md:p-12">
-                            <div className="text-center">
-                                <h4 className="mb-3 mt-1 pb-1 text-xl font-semibold text-orange">
-                                    Welcome to NextJS App
-                                </h4>
+                    <div className="absolute top-0 right-1/2 w-1/2 h-full overflow-hidden transition-all ease-in-out rounded-r-[20%] z-[1000]">
+                        <div className="bg-primary h-full w-[200%] bg-gradient-to-l from-bone-pink to-orange text-white relative -left-full transition-all ease-in-out translate-x-1/2">
+                            <div className="absolute w-1/2 h-full flex items-center justify-center flex-col py-0 px-8 text-center top-0 transition-all ease-in-out translate-x-0">
+                                <h1 className="text-3xl font-bold">Welcome Back!</h1>
+                                <p className="text-base leading-5 tracking-[0.3px] my-5 mx-0">Enter your personal details to use all of site features</p>
+                                <Link href="/login" className="bg-primary hover:bg-white text-white hover:text-orange text-sm py-3 px-11 border-solid border-transparent rounded-lg font-semibold tracking-[0.5px] uppercase mt-3 cursor-pointer bg-transparent border border-white transition" id="register">Login</Link>
                             </div>
-
-                            <form onSubmit={(e) => handleRegister(e)} encType="multipart/form-data">
-                                <h1 className="mb-3 font-semibold text-bone-pink">Register</h1>
-
-                                {error !== '' && (
-                                    <div role="alert" className="alert alert-error">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                        <span className="text-sm">{error}</span>
-                                    </div>
-                                )}
-
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text text-bone-pink">Username</span>
-                                    </div>
-                                    <input type="text" name="username" placeholder="Ucup Doe" className="input input-bordered w-full text-orange bg-dark-blue" />
-                                </label>
-
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text text-bone-pink">Email</span>
-                                    </div>
-                                    <input type="email" name="email" placeholder="Ucup@example.com" className="input input-bordered w-full text-orange bg-dark-blue" />
-                                </label>
-
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text text-bone-pink">Password</span>
-                                    </div>
-                                    <input type="password" name="password" placeholder="••••••••" className="input input-bordered w-full text-orange bg-dark-blue" />
-                                </label>
-                                <label className="form-control w-full">
-                                    <div className="label">
-                                        <span className="label-text text-bone-pink">Repeat Password</span>
-                                    </div>
-                                    <input type="password" name="repeat_password" placeholder="••••••••" className="input input-bordered w-full text-orange bg-dark-blue" />
-                                </label>
-
-                                <div className="my-5 text-center">
-                                    <button type="submit" className="btn w-full uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
-                                        {!isLoading ? 'Register' : (
-                                            <span className="loading loading-spinner loading-md"></span>
-                                        )}
-                                    </button>
-                                </div>
-
-                                <div className="flex items-center">
-                                    <p className="mb-0 mr-2 text-orange">Don`t have an account?</p>
-                                    <Link href="/login" className="link font-bold text-bone-pink hover:text-orange transition">Login here</Link>
-                                </div>
-                            </form>
                         </div>
                     </div>
                 </div>
