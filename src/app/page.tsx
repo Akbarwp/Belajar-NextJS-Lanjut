@@ -20,6 +20,8 @@ export const metadata: Metadata = {
 }
 
 export default function Home() {
+    //? Test error page
+    // throw new Error('Error')
     return (
         <>
             <main className="flex h-screen items-center justify-center hero">
