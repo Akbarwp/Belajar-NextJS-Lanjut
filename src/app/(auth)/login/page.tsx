@@ -6,11 +6,12 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 // Contoh penggunaan Group Routing membuat route Login tanpa harus ada URL '/auth'
-export default function Login() {
+export default function Login({ searchParams }: any) {
 
     const { push } = useRouter();
     const [error, setError] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const callbackURL = searchParams.callbackUrl || '/';
 
     const handleLogin = async (e: any) => {
         e.preventDefault();
@@ -22,12 +23,12 @@ export default function Login() {
                 redirect: false,
                 email: e.target.email.value,
                 password: e.target.password.value,
-                callbackUrl: "/dashboard",
+                callbackUrl: callbackURL,
             });
 
             if (!res?.error) {
                 setIsLoading(false);
-                push("/dashboard");
+                push(callbackURL);
             } else {
                 setIsLoading(false);
                 if (res.status === 401) {

@@ -10,17 +10,18 @@ export default function Layaout({ children, analytics }: { children: React.React
     const { data: session, status }: {data: any; status: string;} = useSession();
     const router = useRouter();
 
-    useEffect(() => {
-        if (status === "unauthenticated") {
-            router.push('/');
+    //? Pengecekan melalui sisi client --> kurang rekomendasi, seharusnya lewat middleware
+    // useEffect(() => {
+    //     if (status === "unauthenticated") {
+    //         router.push('/');
 
-        } else {
-            if (session !== undefined && session?.user.role !== 'admin') {
-                router.push('/');
-            }
-        }
+    //     } else {
+    //         if (session !== undefined && session?.user.role !== 'admin') {
+    //             router.push('/');
+    //         }
+    //     }
 
-    }, [router, status, session?.user.role, session]);
+    // }, [router, status, session?.user.role, session]);
 
     return (
         <>
