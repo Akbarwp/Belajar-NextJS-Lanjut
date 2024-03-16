@@ -21,7 +21,7 @@ export async function retrieveDataById(collectionName: string, id: string) {
     return data;
 }
 
-export async function register (
+export async function register(
     userData: {
         username: string;
         email: string;
@@ -59,7 +59,7 @@ export async function register (
     }
 }
 
-export async function login (userData: { email: string }) {
+export async function login(userData: { email: string }) {
     const q = query(collection(firestore, "users"), where("email", "==", userData.email));
     const snapshot = await getDocs(q);
     const data = snapshot.docs.map((doc) => ({
@@ -74,24 +74,24 @@ export async function login (userData: { email: string }) {
     }
 }
 
-// export async function loginWithGoogle(userData: any, callback: any) {
-//     const q = query(collection(firestore, "users"), where("email", "==", userData.email));
-//     const snapshot = await getDocs(q);
-//     const data: any = snapshot.docs.map((doc) => ({
-//         id: doc.id,
-//         ...doc.data(),
-//     }));
+export async function loginWithGoogle(userData: any, callback: any) {
+    const q = query(collection(firestore, "users"), where("email", "==", userData.email));
+    const snapshot = await getDocs(q);
+    const data: any = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+    }));
 
-//     if (data.length > 0) {
-//         userData.role = userData[0].role;
-//         await updateDoc(doc(firestore, 'users', data[0].id), userData).then(() => {
-//             callback({status: true, data: userData});
-//         });
+    if (data.length > 0) {
+        userData.role = data[0].role;
+        await updateDoc(doc(firestore, 'users', data[0].id), userData).then(() => {
+            callback({ status: true, data: userData });
+        });
 
-//     } else {
-//         userData.role = "member";
-//         await addDoc(collection(firestore, "users"), userData).then(() => {
-//             callback({status: true, data: userData});
-//         });
-//     }
-// }
+    } else {
+        userData.role = "member";
+        await addDoc(collection(firestore, "users"), userData).then(() => {
+            callback({ status: true, data: userData });
+        });
+    }
+}

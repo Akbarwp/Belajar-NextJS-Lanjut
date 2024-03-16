@@ -15,7 +15,7 @@ export default function withAuth(middleware: NextMiddleware, requireAuth: string
             });
 
             //? Middleware kalau belum login
-            if (!token && auth.includes(pathname)) {
+            if (!token && !auth.includes(pathname)) {
                 const url = new URL('/login', req.url);
                 url.searchParams.set('callbackurl', encodeURI(req.url));
                 return NextResponse.redirect(url);

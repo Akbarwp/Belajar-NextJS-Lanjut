@@ -23,7 +23,7 @@ export default function Login({ searchParams }: any) {
                 redirect: false,
                 email: e.target.email.value,
                 password: e.target.password.value,
-                callbackUrl: callbackURL,
+                callbackURL,
             });
 
             if (!res?.error) {
@@ -45,21 +45,21 @@ export default function Login({ searchParams }: any) {
         <>
             <div className="m-0 p-0 box-border flex items-center justify-center flex-col h-screen">
                 <div className="bg-white rounded-[30px] shadow-lg relative overflow-hidden w-[768px] max-w-full min-h-[480px]">
-                    <div className="absolute top-0 h-full transition-all ease-in-out left-0 w-1/2 z-20">
-                        <form onSubmit={(e) => handleLogin(e)} encType="multipart/form-data" className="bg-white flex items-center justify-center flex-col py-0 px-10 h-full">
-                            <h1 className="text-3xl text-orange font-bold">Sign In</h1>
-                            <div className="my-5 mx-0">
-                                <button className="text-dark-blue hover:text-white text-sm border border-solid border-[#ccc] hover:border-bone-pink rounded-[20%] flex justify-center items-center my-0 mx-1 w-[40px] h-[40px] hover:bg-bone-pink transition">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="fill-current w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3.06364 7.50914C4.70909 4.24092 8.09084 2 12 2C14.6954 2 16.959 2.99095 18.6909 4.60455L15.8227 7.47274C14.7864 6.48185 13.4681 5.97727 12 5.97727C9.39542 5.97727 7.19084 7.73637 6.40455 10.1C6.2045 10.7 6.09086 11.3409 6.09086 12C6.09086 12.6591 6.2045 13.3 6.40455 13.9C7.19084 16.2636 9.39542 18.0227 12 18.0227C13.3454 18.0227 14.4909 17.6682 15.3864 17.0682C16.4454 16.3591 17.15 15.3 17.3818 14.05H12V10.1818H21.4181C21.5364 10.8363 21.6 11.5182 21.6 12.2273C21.6 15.2727 20.5091 17.8363 18.6181 19.5773C16.9636 21.1046 14.7 22 12 22C8.09084 22 4.70909 19.7591 3.06364 16.4909C2.38638 15.1409 2 13.6136 2 12C2 10.3864 2.38638 8.85911 3.06364 7.50914Z"></path></svg>
-                                </button>
+                    <div className="absolute top-0 h-full transition-all ease-in-out left-0 w-1/2 z-20 bg-white flex items-center justify-center flex-col py-0 px-10">
+                        <h1 className="text-3xl text-orange font-bold">Sign In</h1>
+                        <div className="my-5 mx-0">
+                            <button className="text-dark-blue hover:text-white text-sm border border-solid border-[#ccc] hover:border-bone-pink rounded-[20%] flex justify-center items-center my-0 mx-1 w-[40px] h-[40px] hover:bg-bone-pink transition" onClick={() => signIn('google', {callbackURL, redirect: false})}>
+                                <svg xmlns="http://www.w3.org/2000/svg" className="fill-current w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M3.06364 7.50914C4.70909 4.24092 8.09084 2 12 2C14.6954 2 16.959 2.99095 18.6909 4.60455L15.8227 7.47274C14.7864 6.48185 13.4681 5.97727 12 5.97727C9.39542 5.97727 7.19084 7.73637 6.40455 10.1C6.2045 10.7 6.09086 11.3409 6.09086 12C6.09086 12.6591 6.2045 13.3 6.40455 13.9C7.19084 16.2636 9.39542 18.0227 12 18.0227C13.3454 18.0227 14.4909 17.6682 15.3864 17.0682C16.4454 16.3591 17.15 15.3 17.3818 14.05H12V10.1818H21.4181C21.5364 10.8363 21.6 11.5182 21.6 12.2273C21.6 15.2727 20.5091 17.8363 18.6181 19.5773C16.9636 21.1046 14.7 22 12 22C8.09084 22 4.70909 19.7591 3.06364 16.4909C2.38638 15.1409 2 13.6136 2 12C2 10.3864 2.38638 8.85911 3.06364 7.50914Z"></path></svg>
+                            </button>
+                        </div>
+                        <span className="text-sm text-dark-blue mb-2">or use your email password</span>
+                        {error !== '' && (
+                            <div role="alert" className="alert alert-error">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                <span className="text-sm">{error}</span>
                             </div>
-                            <span className="text-sm text-dark-blue mb-2">or use your email password</span>
-                            {error !== '' && (
-                                <div role="alert" className="alert alert-error">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <span className="text-sm">{error}</span>
-                                </div>
-                            )}
+                        )}
+                        <form onSubmit={(e) => handleLogin(e)} encType="multipart/form-data" >
                             <input name="email" type="email" placeholder="Email" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
                             <input name="password" type="password" placeholder="Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
                             <button disabled={isLoading} type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
