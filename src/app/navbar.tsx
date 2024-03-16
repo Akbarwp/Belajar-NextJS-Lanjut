@@ -13,8 +13,7 @@ export default function Navbar() {
     // Cara penggunaan Hook untuk menuju URL tertentu
     const router = useRouter();
 
-    // Cara membuat Logout Next
-    const { status }: { status: string; } = useSession();
+    const { data: session, status }: { data: any, status: string; } = useSession();
 
     return (
         <>
@@ -65,11 +64,6 @@ export default function Navbar() {
                 </div>
 
                 <div className="navbar-end gap-x-2">
-                    {/* Sign Up biasa */}
-                    <Link href="/register" className="btn uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
-                        Register
-                    </Link>
-
                     {/* Login biasa */}
                     {/* <Link href="/login" className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">
                         Login
@@ -82,13 +76,40 @@ export default function Navbar() {
 
                     {/* Login Next-Auth */}
                     {status === "authenticated" ? (
-                        <button className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange" onClick={() => signOut()}>
-                            Logout
-                        </button>
+                        <div className="dropdown dropdown-end">
+                            <div className="flex items-center mr-3">
+                                <span className="text-white font-semibold mr-1">{session?.user?.username}</span>
+                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-9 rounded-full">
+                                        <Image width={100} height={100} alt="Photo Profile" src="/photoProfile.jpg" />
+                                    </div>
+                                </div>
+                            </div>
+                            <ul tabIndex={0} className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 text-fun-green">
+                                {session?.user?.role === "admin" ?
+                                    <li><Link href="/admin">Admin</Link></li>
+                                    : ""}
+                                <li>
+                                    <Link href="/profile" className="justify-between">
+                                        Profile
+                                    </Link>
+                                </li>
+                                <li><a>Settings</a></li>
+                                <li>
+                                    <a onClick={() => signOut()} className="text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange">Logout</a>
+                                </li>
+                            </ul>
+                        </div>
                     ) : (
-                        <button className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange" onClick={() => signIn()}>
-                            Login
-                        </button>
+                        <>
+                            {/* Sign Up biasa */}
+                            <Link href="/register" className="btn uppercase font-bold text-blue bg-bone-pink border-bone-pink hover:text-bone-pink hover:bg-blue hover:border-bone-pink">
+                                Register
+                            </Link>
+                            <button className="btn uppercase font-bold text-blue bg-orange border-orange hover:text-orange hover:bg-blue hover:border-orange" onClick={() => signIn()}>
+                                Login
+                            </button>
+                        </>
                     )}
                 </div>
             </div >

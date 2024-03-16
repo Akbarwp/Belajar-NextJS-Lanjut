@@ -26,18 +26,17 @@ export default function Login() {
             });
 
             if (!res?.error) {
-                push("/product");
                 setIsLoading(false);
+                push("/dashboard");
             } else {
-                console.log(res.error);
-                setError(res.error);
                 setIsLoading(false);
+                if (res.status === 401) {
+                    setError("Email or Password is Incorrect!");
+                }
             }
 
         } catch (err) {
             console.log(err);
-            setError("Error");
-            setIsLoading(false);
         }
     };
 
@@ -54,9 +53,15 @@ export default function Login() {
                                 </button>
                             </div>
                             <span className="text-sm text-dark-blue mb-2">or use your email password</span>
+                            {error !== '' && (
+                                <div role="alert" className="alert alert-error">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <span className="text-sm">{error}</span>
+                                </div>
+                            )}
                             <input name="email" type="email" placeholder="Email" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
                             <input name="password" type="password" placeholder="Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
-                            <button type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
+                            <button disabled={isLoading} type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
                                 {!isLoading ? 'Login' : (
                                     <span className="loading loading-spinner loading-md"></span>
                                 )}

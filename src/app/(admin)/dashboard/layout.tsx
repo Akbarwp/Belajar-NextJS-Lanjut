@@ -12,16 +12,15 @@ export default function Layaout({ children, analytics }: { children: React.React
 
     useEffect(() => {
         if (status === "unauthenticated") {
-            router.push('/login');
+            router.push('/');
 
         } else {
             if (session !== undefined && session?.user.role !== 'admin') {
-                router.push('/login');
+                router.push('/');
             }
         }
 
     }, [router, status, session?.user.role, session]);
-
 
     return (
         <>

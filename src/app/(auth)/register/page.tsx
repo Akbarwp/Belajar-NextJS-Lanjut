@@ -17,8 +17,8 @@ export default function Register() {
         setIsLoading(true);
 
         if (e.target.password.value !== e.target.repeat_password.value) {
-            setError("Passwords do not match!");
             setIsLoading(false);
+            setError("Passwords do not match!");
 
         } else {
             const res = await fetch('api/auth/register', {
@@ -35,8 +35,8 @@ export default function Register() {
                 push('/login');
     
             } else {
-                setError("Email already registered!");
                 setIsLoading(false);
+                setError("Email already registered!");
             }
         }
     };
@@ -59,7 +59,7 @@ export default function Register() {
                             <input name="email" type="email" placeholder="Email" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
                             <input name="password" type="password" placeholder="Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
                             <input name="repeat_password" type="password" placeholder="Repeat Password" className="bg-[#eee] border-none my-2 mx-0 py-3 px-4 text-sm rounded-lg w-full outline-none text-orange" required />
-                            <button type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
+                            <button disabled={isLoading} type="submit" className="btn w-full uppercase font-bold text-blue hover:text-white bg-bone-pink border-bone-pink hover:bg-orange hover:border-bone-pink text-sm py-3 px-11 border border-solid border-transparent rounded-lg tracking-[0.5px] mt-3 cursor-pointer">
                                 {!isLoading ? 'Register' : (
                                     <span className="loading loading-spinner loading-md"></span>
                                 )}
