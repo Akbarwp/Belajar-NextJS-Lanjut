@@ -51,7 +51,8 @@ export default async function FakeStore() {
                     {products.length > 0 && products.map((product: any) => (
                         <>
                             <div key={product.id} className="card card-compact w-96 bg-blue shadow-xl">
-                                <figure><Image className="w-[600px] h-[400px]" width={600} height={600} src={product.image} alt={product.title} /></figure>
+                                {/* Penggunaan Image loading */}
+                                <figure><Image className="w-[600px] h-[400px]" width={600} height={600} src={product.image} alt={product.title} loading="lazy" /></figure>
                                 <div className="card-body">
                                     <Link href={`/fakeStore/${product.id}`} className="text-xl font-bold text-bone-pink hover:text-orange transition">{product.title}</Link>
                                     <p className="text-base text-bone-pink">{product.category}</p>

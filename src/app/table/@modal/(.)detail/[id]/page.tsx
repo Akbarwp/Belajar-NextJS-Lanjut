@@ -1,7 +1,10 @@
-import Modal from "@/app/components/core/modal";
+// import Modal from "@/app/components/core/modal";
 import { getDataNext } from "@/services/products";
+import dynamic from "next/dynamic";
 import Image from "next/image";
-import Link from "next/link";
+
+//? Penggunaan Importing Client Components
+const Modal = dynamic(() => import('@/app/components/core/modal'));
 
 export default async function DetailTabel(props: any) {
 

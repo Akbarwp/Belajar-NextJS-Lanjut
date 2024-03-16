@@ -16,7 +16,7 @@ export default async function DetailTabel(props: any) {
                 </h1>
                 <div className="flex flex-wrap justify-center items-center gap-7 mb-10">
                     <div className="card card-compact w-96 bg-blue shadow-xl">
-                        <figure><Image className="w-[600px] h-[400px]" width={600} height={600} src={productsNext.data.image} alt={productsNext.data.title} /></figure>
+                        <figure><Image className="w-[600px] h-[400px]" width={600} height={600} src={productsNext.data.image} alt={productsNext.data.title} loading="lazy" /></figure>
                         <div className="card-body">
                             <h1 className="text-xl font-bold text-bone-pink hover:text-orange transition">{productsNext.data.name}</h1>
                             <p className="text-base text-bone-pink">{productsNext.data.category}</p>

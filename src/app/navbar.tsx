@@ -81,7 +81,7 @@ export default function Navbar() {
                                 <span className="text-white font-semibold mr-1">{session?.user?.username}</span>
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                                     <div className="w-9 rounded-full">
-                                        <Image width={100} height={100} alt="Photo Profile" src="/photoProfile.jpg" />
+                                        <Image width={100} height={100} alt="Photo Profile" src="/photoProfile.jpg" loading="lazy" />
                                     </div>
                                 </div>
                             </div>
