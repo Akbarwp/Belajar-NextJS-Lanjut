@@ -23,9 +23,6 @@ export default function RootLayout({
 
   return (
     <html lang="en" data-theme="dark">
-      <head>
-        <title>NextJS App</title>
-      </head>
       <body className={`${inter.className} bg-dark-blue`}>
         <SessionProvider>
           {!disableNavbar.includes(pathname) && <Navbar /> }
