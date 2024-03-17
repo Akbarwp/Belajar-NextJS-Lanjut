@@ -1,7 +1,7 @@
 import { getToken } from "next-auth/jwt";
 import { NextFetchEvent, NextMiddleware, NextRequest, NextResponse } from "next/server";
 
-const onlyAdmin = ['/dashboard'];
+const onlyAdmin = ['/dashboard', '/prisma'];
 const auth = ['/login', '/register'];
 
 export default function withAuth(middleware: NextMiddleware, requireAuth: string[] = []) {
